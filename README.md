@@ -1,4 +1,4 @@
-## Getting started
+## Getting started - URL SHORTENER
 
 Get neccessary environmental variables from .env.example and add it to .env
 
