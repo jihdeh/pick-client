@@ -1,4 +1,5 @@
-import { useCallback, useEffect, useState } from "react";
+/* eslint-disable react-hooks/exhaustive-deps */
+import { useEffect, useState } from "react";
 import { useGetFrequentlyAccessed } from "../api";
 import { FrequentlyAccessedType } from "../api/types";
 
@@ -6,17 +7,16 @@ const FrequentlyAccessed = () => {
   const [makeRequest, requestState] = useGetFrequentlyAccessed();
   const [response, setResponse] = useState<FrequentlyAccessedType>();
 
-  const getFrequentResource = useCallback(async () => {
+  const getFrequentResource = async () => {
     const result = await makeRequest();
     if (result) {
       setResponse(result);
     }
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
+  };
 
   useEffect(() => {
     getFrequentResource();
-  }, [getFrequentResource]);
+  }, []);
 
   const _renderVisitedList = () => {
     return response?.map((urlPayload, index) => (
