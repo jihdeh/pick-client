@@ -19,8 +19,6 @@ const UrlGeneratorForm: React.FC<{}> = () => {
     }
   };
 
-  console.log("---state", requestState);
-
   const onInputChange = (event: ChangeEvent<HTMLInputElement>) => {
     const value = event.target.value;
     setUrlInput(value);
@@ -45,11 +43,12 @@ const UrlGeneratorForm: React.FC<{}> = () => {
   );
 
   return (
-    <div>
+    <div className="center">
       <form onSubmit={onSubmit}>
         <input type="text" value={urlInput} onChange={onInputChange} />
         <button type="submit">Submit</button>
       </form>
+      {requestState.isLoading && <p>Generating url....</p>}
       {shortUrlResponse && _renderShortUrlResponse()}
       {requestState.error && _renderShortUrlError()}
       {urlInput && !validator.isURL(urlInput) && (
